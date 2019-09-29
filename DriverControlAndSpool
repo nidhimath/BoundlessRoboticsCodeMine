@@ -76,7 +76,7 @@ public class DriverControlAndSpool extends LinearOpMode{
         telemetry.addData("Motor Power", backLeft.getPower());
         telemetry.addData("Motor Power", backRight.getPower());
     }
-    
+
     public void strafe(double lrLeftStick){
 
         frontLeft.setPower(lrLeftStick);
