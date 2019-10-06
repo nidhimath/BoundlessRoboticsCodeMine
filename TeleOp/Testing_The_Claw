@@ -1,0 +1,31 @@
+package org.firstinspires.ftc.teamcode;
+
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+
+@TeleOp(name="TestingTheClaw", group="boundless")
+public class TestingTheClaw extends LinearOpMode {
+    //initiating motors
+    private DcMotor claw;
+    public void runOpMode(){
+        claw  = hardwareMap.get(DcMotor.class, "claw");
+
+        telemetry.addData("Status", "Initialized");
+        telemetry.update();
+        waitForStart();
+        double clawRightStick=0;
+        while(opModeIsActive()){
+            clawRightStick = -this.gamepad2.right_stick_y;
+
+            setPowerToClaw(clawRightStick);
+
+            telemetry.addData("Status", "Running");
+            telemetry.update();
+        }
+    }
+    public void setPowerToClaw(double fbLeftStick){
+        claw.setPower(fbLeftStick);
+        telemetry.addData("Target Power", fbLeftStick);
+    }
+}
